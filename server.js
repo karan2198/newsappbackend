@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 const apiKey = process.env.API_KEY;
 const port = process.env.PORT || 5000;
-const frontendURL = 'https://newsappkaran.netlify.app/'; // Replace this with your deployed frontend URL
+const frontendURL = 'https://main--newsappkaran.netlify.app/'; // Replace this with your deployed frontend URL
 
 app.use(cors({
   origin: frontendURL, // Allow requests from the deployed frontend URL
@@ -34,5 +34,5 @@ app.get('/news', async (req, res) => {
 
 // Create an HTTP server
 http.createServer(app).listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on https://localhost:${port}`);
 });
