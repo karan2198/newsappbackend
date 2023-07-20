@@ -1,16 +1,6 @@
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+const http = require('http'); // Change 'https' to 'http'
 const axios = require('axios');
-
-// const keyFilePath = path.join('C:', 'Users', 'karan', 'OneDrive', 'Desktop', 'NewsAPIapp', 'localhost-key.pem');
-const keyFilePath = './localhost-key.pem'
-// const keyFilePath = path.join('./','localhost-key.pem')
-
-// const certFilePath = path.join('C:', 'Users', 'karan', 'OneDrive', 'Desktop', 'NewsAPIapp', 'localhost.pem');
-// const certFilePath = path.join('./', 'localhost.pem')
-const certFilePath = './localhost.pem'
 
 require('dotenv').config();
 
@@ -18,8 +8,10 @@ const cors = require('cors');
 const app = express();
 const apiKey = process.env.API_KEY;
 const port = process.env.PORT || 5000;
+const frontendURL = 'https://example.com'; // Replace this with your deployed frontend URL
+
 app.use(cors({
-  origin: '',
+  origin: frontendURL, // Allow requests from the deployed frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -40,12 +32,7 @@ app.get('/news', async (req, res) => {
   }
 });
 
-const options = {
-  key: fs.readFileSync(keyFilePath),
-  cert: fs.readFileSync(certFilePath),
-};
-
-// Create an HTTPS server
-https.createServer(options, app).listen(port, () => {
-  console.log(`Server is running on https://localhost:${port}`);
+// Create an HTTP server
+http.createServer(app).listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
