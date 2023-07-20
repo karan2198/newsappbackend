@@ -8,7 +8,7 @@ const cors = require('cors');
 const app = express();
 const apiKey = process.env.API_KEY;
 const port = process.env.PORT || 5000;
-const frontendURL = 'https://example.com'; // Replace this with your deployed frontend URL
+const frontendURL = 'https://newsappkaran.netlify.app/'; // Replace this with your deployed frontend URL
 
 app.use(cors({
   origin: frontendURL, // Allow requests from the deployed frontend URL
