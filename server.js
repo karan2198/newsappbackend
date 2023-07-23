@@ -1,5 +1,5 @@
 import express from 'express';
-//import http from 'http'; // Change 'https' to 'http'
+import http from 'http'; // Change 'https' to 'http'
 import axios from 'axios';
 import dotenv from 'dotenv';
 
@@ -48,6 +48,6 @@ app.get('/news', async (req, res) => {
 });
 
 // Create an HTTP server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+http.createServer(app).listen(port, () => {
+  console.log(`Server is running on https://localhost:${port}`);
 });
