@@ -3,6 +3,15 @@ const http = require('http'); // Change 'https' to 'http'
 const axios = require('axios');
 require('dotenv').config();
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+// const keyFilePath = path.join('C:', 'Users', 'karan', 'OneDrive', 'Desktop', 'NewsAPIapp', 'localhost-key.pem');
+const keyFilePath = './localhost-key.pem'
+// const keyFilePath = path.join('./','localhost-key.pem')
+
+// const certFilePath = path.join('C:', 'Users', 'karan', 'OneDrive', 'Desktop', 'NewsAPIapp', 'localhost.pem');
+// const certFilePath = path.join('./', 'localhost.pem')
+const certFilePath = './localhost.pem'
 const app = express();
 const apiKey = process.env.API_KEY;
 const port = process.env.PORT || 5000;
@@ -43,6 +52,11 @@ app.get('/news', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch news data' });
   }
 });
+const options = {
+  key: fs.readFileSync(keyFilePath),
+  cert: fs.readFileSync(certFilePath),
+};
+
 
 // Create an HTTP server
 http.createServer(app).listen(port, () => {
