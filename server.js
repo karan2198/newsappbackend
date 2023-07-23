@@ -1,11 +1,8 @@
-import express from 'express';
-import http from 'http'; // Change 'https' to 'http'
-import axios from 'axios';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-import cors from 'cors';
+const express = require('express');
+const http = require('http'); // Change 'https' to 'http'
+const axios = require('axios');
+require('dotenv').config();
+const cors = require('cors');
 const app = express();
 const apiKey = process.env.API_KEY;
 const port = process.env.PORT || 5000;
