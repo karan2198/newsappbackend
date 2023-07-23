@@ -38,7 +38,7 @@ app.get('/news', async (req, res) => {
     currentDate = yesterday.toISOString().slice(0, 10);
   }
 
-  const url = `https://newsapi.org/v2/everything?q=${q}&from=${currentDate}&to=${currentDate}&pageSize=20&page=${page}&sortBy=popularity&apiKey=${apiKey}`;
+  const url = `https://newsapi.org/v2/everything?q=${q}&from=${currentDate}&to=${currentDate}&pageSize=32&page=${page}&sortBy=popularity&apiKey=${apiKey}`;
   try {
     const newsResponse = await axios.get(url);
     res.json(newsResponse.data);
