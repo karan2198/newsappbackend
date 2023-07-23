@@ -26,11 +26,17 @@ app.get('/', (req, res) => {
 app.get('/news', async (req, res) => {
   const page = req.query.page || 1;
   const q = req.query.q || 'sports';
-  //const currentDate = new Date().toISOString().slice(0, 10);
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(today.getDate() - 1);
-  const currentDate = yesterday.toISOString().slice(0, 10);
+  const customDate = req.query.date; // Get the custom date from req.query
+
+  let currentDate;
+  if (customDate) {
+    currentDate = customDate;
+  } else {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    currentDate = yesterday.toISOString().slice(0, 10);
+  }
 
   const url = `https://newsapi.org/v2/everything?q=${q}&from=${currentDate}&to=${currentDate}&pageSize=20&page=${page}&sortBy=popularity&apiKey=${apiKey}`;
   try {
