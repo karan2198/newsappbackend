@@ -40,8 +40,10 @@ app.get('/news', async (req, res) => {
     const newsResponse = await axios.get(url);
     res.json(newsResponse.data);
   } catch (error) {
+    console.error('Error fetching news data:', error);
     res.status(500).json({ error: 'Failed to fetch news data' });
   }
+  
 });
 
 // Create an HTTP server
