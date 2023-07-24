@@ -11,7 +11,7 @@ const port = process.env.PORT || 5000;
 const frontendURL = 'https://main--newsappkaran.netlify.app'; // Replace this with your deployed frontend URL
 
 app.use(cors({
-  origin: [frontendURL, 'https://localhost:3000/news'], // Allow requests from the deployed frontend URL
+  origin: [frontendURL, 'https://localhost:3000/news','http://127.0.0.1:5501/'], // Allow requests from the deployed frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
