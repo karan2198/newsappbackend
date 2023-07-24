@@ -1,8 +1,5 @@
 const express = require('express');
-// const https = require('https'); // Change 'https' to 'http'
-// const fs = require('fs');
 const http = require('http');
-//const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
 const cors = require('cors');
@@ -48,15 +45,6 @@ app.get('/news', async (req, res) => {
   }
 
 });
-
-// const sslOptions = {
-//   key: fs.readFileSync(path.join('./', 'localhost-key.pem')),
-//   cert: fs.readFileSync(path.join('./', 'localhost.pem')), // Replace with your certificate file name
-// };
-
-// // Create an HTTPS server
-// const server = https.createServer(sslOptions, app);
-
 // Start the server
 http.createServer(app).listen(port, () => {
   console.log(`Server is running on https://localhost:${port}`);
