@@ -1,7 +1,8 @@
 const express = require('express');
-const https = require('https'); // Change 'https' to 'http'
-const fs = require('fs');
-const path = require('path');
+// const https = require('https'); // Change 'https' to 'http'
+// const fs = require('fs');
+const http = require('http');
+//const path = require('path');
 const axios = require('axios');
 require('dotenv').config();
 const cors = require('cors');
@@ -11,7 +12,7 @@ const port = process.env.PORT || 5000;
 const frontendURL = 'https://main--newsappkaran.netlify.app'; // Replace this with your deployed frontend URL
 
 app.use(cors({
-  origin: [frontendURL, 'https://localhost:3000/news','http://127.0.0.1:5501/'], // Allow requests from the deployed frontend URL
+  origin: frontendURL, // Allow requests from the deployed frontend URL
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
@@ -48,15 +49,15 @@ app.get('/news', async (req, res) => {
 
 });
 
-const sslOptions = {
-  key: fs.readFileSync(path.join('./', 'localhost-key.pem')),
-  cert: fs.readFileSync(path.join('./', 'localhost.pem')), // Replace with your certificate file name
-};
+// const sslOptions = {
+//   key: fs.readFileSync(path.join('./', 'localhost-key.pem')),
+//   cert: fs.readFileSync(path.join('./', 'localhost.pem')), // Replace with your certificate file name
+// };
 
-// Create an HTTPS server
-const server = https.createServer(sslOptions, app);
+// // Create an HTTPS server
+// const server = https.createServer(sslOptions, app);
 
 // Start the server
-server.listen(port, () => {
+http.createServer(app).listen(port, () => {
   console.log(`Server is running on https://localhost:${port}`);
 });
