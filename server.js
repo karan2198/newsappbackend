@@ -4,17 +4,15 @@ const axios = require('axios');
 require('dotenv').config();
 const cors = require('cors');
 const app = express();
-const apiKey = process.env.API_KEY;
-const port = process.env.PORT || 5000;
+const apiKey = '893e90406e96486da7efc4244c066da2';
+const port = process.env.PORT || 8000;
 const frontendURL = 'https://main--newsappkaran.netlify.app'; // Replace this with your deployed frontend URL
 
 app.use(cors({
-  origin: frontendURL, // Allow requests from the deployed frontend URL
+  origin: [frontendURL, "http://127.0.0.1:5501"], // Allow requests from the deployed frontend URL and http://127.0.0.1:5501
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
-
-
 
 app.get('/', (req, res) => {
   res.redirect('/news');
@@ -43,9 +41,9 @@ app.get('/news', async (req, res) => {
     console.error('Error fetching news data:', error);
     res.status(500).json({ error: 'Failed to fetch news data' });
   }
-
 });
+
 // Start the server
 http.createServer(app).listen(port, () => {
-  console.log(`Server is running on https://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
